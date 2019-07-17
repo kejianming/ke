@@ -1,0 +1,57 @@
+spring:
+  profiles:
+    active: test
+#    可切换sqlserver
+#    active: sqlserver-dev
+
+
+taskthreadpool: 
+    # 线程池维护线程的最小数量
+    corePoolSize: 3
+    # 线程池维护线程的最大数量
+    maxPoolSize: 6
+    # 线程池所使用的缓冲队列数量
+    queueCapacity: 200
+    # 线程池维护线程所允许的空闲时间
+    keepAliveSeconds: 6000
+
+echarts: 
+  map: 
+    # 地图类型 type 1 是广州地图   2 是深圳地图
+    type: 1 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

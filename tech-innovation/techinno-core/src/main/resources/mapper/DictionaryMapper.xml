@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nfdw.mapper.DictionaryMapper">
+	<select id="selectDictionaryView" parameterType="pd" resultType="pd">
+		select * from t_system_dictionary where 1 = 1
+		<if test="id != null">
+			and id = #{id}
+		</if>
+		order by id, sort
+	</select>
+	<select id="selectDictionary" parameterType="com.nfdw.entity.Dictionary" resultMap="getDictionary">
+		select * from t_system_dictionary where 1 = 1 and isused=1
+		<if test="dgroup != null and dgroup != ''">
+			and dgroup = #{dgroup}
+		</if>
+		<if test="code != null and code != ''">
+			and code = #{code}
+		</if>
+		order by sort
+
+	</select>
+	<select id="findDictionaryList" parameterType="pd" resultType="pd">
+		select * from t_system_dictionary where 1 = 1
+		<if test="dgroup != null and dgroup != ''">
+			and dgroup like '%${dgroup}%'
+		</if>
+		<if test="code != null and code != ''">
+			and code like '%${code}%'
+		</if>
+		<if test="name!=null and name != ''">
+			and name like '%${name}%'
+		</if>
+		<if test="dvalue!=null and dvalue != ''">
+			and dvalue like '%${dvalue}%'
+		</if>
+		<if test="isused!=null and isused != ''">
+			and isused like '%${isused}%'
+		</if>
+		order by id,sort
+	</select>
+	<select id="selectDictionaryPage" parameterType="com.nfdw.entity.Dictionary" resultMap="getDictionary">
+		select * from t_system_dictionary
+		<if test="dgroup != null and dgroup != ''">
+			and dgroup like '%${dgroup}%'
+		</if>
+		<if test="code != null and code != ''">
+			and code like '%${code}%'
+		</if>
+		<if test="name!=null and name != ''">
+			and name like '%${name}%'
+		</if>
+		<if test="dvalue!=null and dvalue != ''">
+			and dvalue like '%${dvalue}%'
+		</if>
+		<if test="isused!=null and isused != ''">
+			and isused like '%${isused}%'
+		</if>
+		order by sort,id LIMIT #{pageNum},#{pageSize}
+	</select>
+	<select id="getPage" resultType="int" parameterType="com.nfdw.entity.Dictionary">
+		select count(*) from  t_system_dictionary
+		where 1=1
+		<if test="dgroup != null and dgroup != ''">
+			and dgroup like '%${dgroup}%'
+		</if>
+		<if test="code != null and code != ''">
+			and code like '%${code}%'
+		</if>
+		<if test="name!=null and name != ''">
+			and name like '%${name}%'
+		</if>
+		<if test="dvalue!=null and dvalue != ''">
+			and dvalue like '%${dvalue}%'
+		</if>
+		<if test="isused!=null and isused != ''">
+			and isused like '%${isused}%'
+		</if>
+	</select>
+	
+	<insert id="addDictionaryInfo" parameterType="pd">
+		insert into t_system_dictionary 
+		(dgroup,code,name,dvalue,isused,sort)
+		values (#{dgroup},#{code},#{name},#{dvalue},#{isused},#{sort})
+		<selectKey keyProperty="id" resultType="int" order="AFTER">
+				select @@identity
+			</selectKey>
+	</insert>
+	<update id="editDictionaryInfo">
+		update t_system_dictionary
+		 set
+		 dgroup = #{dgroup}, 
+		 code = #{code},
+		 dvalue = #{dvalue}, 
+		 name = #{name}, 
+		 sort = #{sort}, 
+		 isused = #{isused}
+		where id = #{id}
+	</update>
+	
+	<insert id="addDictionary" parameterType="com.nfdw.entity.Dictionary">
+		insert into t_system_dictionary (dgroup,code,name,dvalue,isused,sort) values (#{dgroup},#{code},#{name},#{dvalue},#{isused},#{sort})
+		<selectKey keyProperty="id" resultType="int" order="AFTER">
+			select @@identity
+		</selectKey>
+	</insert>
+	<update id="editDictionary" parameterType="com.nfdw.entity.Dictionary">
+		update t_system_dictionary set dgroup = #{dgroup}, code = #{code},
+			dvalue = #{dvalue}, name = #{name}, sort = #{sort}, isused = #{isused}
+			where id = #{id}
+	</update>
+	<delete id="delDictionary">
+		delete from t_system_dictionary where id =#{id}
+	</delete>
+	<select id="selectItemsByGroup" parameterType="pd" resultType="pd">
+		SELECT * FROM t_system_dictionary a
+		WHERE a.dgroup=#{dgroup} 
+		ORDER BY sort ASC
+	</select>
+	<resultMap id="getDictionary" type="com.nfdw.entity.Dictionary">
+		<id property="id" column="id" />  
+	    <result property="dgroup" column="dgroup" />  
+	    <result property="code" column="code" />  
+	    <result property="dvalue" column="dvalue" />  
+	    <result property="name" column="name" />  
+	    <result property="describe" column="describe"/>
+	    <result property="sort" column="sort"/>
+	    <result property="isused" column="isused" />  
+	</resultMap>
+
+	<select id="findSystemDictionaryList" parameterType="pd" resultType="pd">
+		select id, dvalue,dgroup,code,name,isused,sort
+		from t_system_dictionary
+		where 1=1
+		<if test="id != null and id !=''">
+			and id=#{id}
+		</if>
+		<if test="dvalue != null and dvalue !=''">
+			and dvalue=#{dvalue}
+		</if>
+		<if test="dgroup != null and dgroup !=''">
+			and dgroup like#{dgroup}
+		</if>
+		<if test="code != null and code !=''">
+			and code=#{code}
+		</if>
+		<if test="name != null and name !=''">
+			and name=#{name}
+		</if>
+		<if test="isused != null and isused !=''">
+		and isused=#{isused}
+	</if>
+		<if test="sort != null and sort !=''">
+			and sort=#{sort}
+		</if>
+	</select>
+	<delete id="deleteDictionary" parameterType="java.util.List">
+		delete from t_system_dictionary where id in
+		<foreach item="item" collection="list" index="index" open="("
+				 separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+
+	<insert id="saveDictionary" parameterType="pd">
+		insert into t_system_dictionary
+		(dvalue,dgroup,code,name,isused,updatetime,sort)
+		values
+		(#{dvalue},#{dgroup},#{code},#{name},#{isused},#{updatetime},#{sort})
+	</insert>
+	<update id="updateDictionary" parameterType="pd">
+		update t_system_dictionary set dvalue=#{dvalue},dgroup=#{dgroup},code=#{code},name=#{name}
+		,isused=#{isused},sort=#{sort},updatetime=#{updatetime} where id=#{id};
+	</update>
+
+	<select id="findGroup" parameterType="pd" resultType="pd">
+		select dgroup from t_system_dictionary where 1 = 1 GROUP BY dgroup  ORDER BY id
+	</select>
+
+</mapper>

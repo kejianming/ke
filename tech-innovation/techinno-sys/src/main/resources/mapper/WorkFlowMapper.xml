@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="WorkFlowMapper">
+	<insert id="merge" parameterType="pd" useGeneratedKeys="true" keyProperty="id">
+		insert into w_card_process(id,processId,code,name,requireman,status,
+		nowAssignId,nowAssign,requiredate,operationdate,nowStep,remark) 
+		values (#{id},#{processId},#{code},#{name},#{requireman},#{status},
+		#{nowAssignId},#{nowAssign},#{requiredate},#{operationdate},#{nowStep},#{remark})
+			on duplicate key update
+		id = #{id}	
+		<if test="processId != null and processId != ''">
+			,processId= #{processId}
+		</if>
+		<if test="code != null and code != ''">
+			,code= #{code}
+		</if>	
+		<if test="requireman != null and requireman != ''">
+			,requireman= #{requireman}
+		</if>
+		<if test="status != null and status != ''">
+			,status= #{status}
+		</if>
+		<if test="nowAssignId != null and nowAssignId != ''">
+			,nowAssignId= #{nowAssignId}
+		</if>
+		<if test="nowAssign != null and nowAssign != ''">
+			,nowAssign= #{nowAssign}
+		</if>
+		<if test="remark != null and remark != ''">
+			,remark= #{remark}
+		</if>
+		
+	</insert>
+	<select id="queryCardFlowList" parameterType="pd" resultType="pd">
+		SELECT * from w_card_process 
+			where 1=1
+        	<if test="id != null and id !=''">
+				and id=#{id}
+			</if>
+			<if test="code != null and code !=''">
+				and code=#{code}
+			</if>
+			
+			order by requiredate desc
+	</select>
+	
+	<select id="queryCardFlowData" parameterType="pd" resultType="pd">
+		SELECT * from w_card_process where id = #{id}
+	</select>
+</mapper>

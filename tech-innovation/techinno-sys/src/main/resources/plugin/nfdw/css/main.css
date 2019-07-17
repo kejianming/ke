@@ -1,0 +1,46 @@
+
+/* 重写layui下拉菜单样式 start */
+.layui-form-select .layui-input {
+    padding-right: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.nfdw-form-item {
+    margin-bottom: 0px;
+    clear: both;
+}
+
+.nfdw-input-block {
+    margin-left: 0px;
+    float: left;
+    width: 180px;
+}
+
+.nfdw-label {
+    padding: 6px 0px;
+    text-align: left;
+    float: left;
+    width: 80px;
+}
+
+.lenos-search {
+    padding: 3px 10px;
+    position: relative;
+    top: 2px;
+    z-index: 99;
+    border-top: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e5e5e5;
+    height: 30px;
+}
+.lenos-searchs {
+   border-top: solid 1px #e5e5e5;
+    border-bottom: solid 1px #e5e5e5;
+    margin-top: 5px;
+    padding: 5px;
+}
+.input-sm {
+   	height: 30px;
+   	width: 180px;
+}
+/* 重写layui下拉菜单样式 end */

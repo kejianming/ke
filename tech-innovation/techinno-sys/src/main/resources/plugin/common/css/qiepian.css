@@ -1,0 +1,107 @@
+.tariffCards {
+  width:360px; 
+  height:360px;
+  margin-left:35%;
+  user-select: none;
+  transform: translate3d(0, 0, 0);
+  transform-style: preserve-3d;
+}
+.tariffCards > div {
+  position: relative;
+  width: 50%;
+  height: 50%;
+  border-radius: 12px;
+  color: white;
+  transform: rotateX(65deg) rotateY(0deg) rotate(45deg);
+  transition: all 0.4s ease;
+  overflow: hidden;
+  cursor: pointer;
+}
+.tariffCards > div:after {
+  position: absolute;
+  top: -70px;
+  left: 0px;
+  content: "";
+  width: 200%;
+  height: 200%;
+  background-image: linear-gradient(60deg, rgba(255, 255, 255, 0) 20%, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0) 80%);
+  transform: translateX(-100%);
+}
+.tariffCards > div.economy {
+  margin-top: -10%;
+  z-index: 3;
+  border: 3px solid #83eae9;
+  background-color: rgba(7,53,79,0.8);
+  background-image: linear-gradient(135deg, rgba(0,160,181,0.3), rgba(0,160,181,0.3));
+  box-shadow: 20px 20px 60px rgba(34, 50, 84, 0.3), 1px 1px 0px 1px rgba(0,160,181,0.3);
+}
+.tariffCards > div.premiumeconomy {
+  margin-top: -35%;
+  z-index: 2;
+  border: 3px solid #83eae9;
+  background-color: rgba(7,53,79,0.8);
+  background-image: linear-gradient(135deg, rgba(0,160,181,0.3), rgba(0,160,181,0.3));
+  box-shadow: 20px 20px 60px rgba(34, 50, 84, 0.3), 1px 1px 0px 1px rgba(0,160,181,0.3);
+}
+.tariffCards > div.newpremiumeconomy {
+  margin-top: -35%;
+  z-index: 2;
+  border: 3px solid #83eae9;
+  background-color: rgba(270,253,279,0.8);
+  background-image: linear-gradient(135deg, rgba(0,160,181,0.3), rgba(0,160,181,0.3));
+  box-shadow: 20px 20px 60px rgba(34, 50, 84, 0.3), 1px 1px 0px 1px rgba(0,160,181,0.3);
+}
+.tariffCards > div.first {
+  margin-top: -20%;
+  border: 3px dashed #83eae9;
+  background-color: rgba(7,53,79,0.8);
+  background-image: linear-gradient(135deg, rgba(0,160,181,0.3), rgba(0,160,181,0.3));
+  box-shadow: 20px 20px 60px rgba(34, 50, 84, 0.3), 1px 1px 0px 1px rgba(0,160,181,0.3);
+}
+.tariffCards > div:hover:after {
+  transform: translateX(100%);
+  transition: all 1.2s ease-in-out;
+}
+  .cross {
+            width: 50px;
+	        height: 50px;
+	        margin: 35% auto;
+	        color: #83eae9;
+	        border: 2px solid;
+	        border-radius: 70%;
+	        outline: 10px solid;
+	        outline-offset: -36px;
+	        margin-left: 37%;
+	        transform: rotateZ(45deg);
+        }
+::-webkit-scrollbar-track-piece {/* //滚动条凹槽的颜色，还可以设置边框属性*/
+	background-color:#ffffff;
+}
+::-webkit-scrollbar {  /*//滚动条的宽度*/
+	width:5px;
+	height:5px;
+}
+::-webkit-scrollbar-thumb {  /*//滚动条的设置*/
+	background-color:#ffffff;
+	background-clip:padding-box;
+	min-height:28px;
+}
+::-webkit-scrollbar-thumb:hover {
+	background-color:#ffffff;
+}
+
+.tariffCards::-webkit-scrollbar {
+ width: 5px;
+}
+ .tariffCards::-webkit-scrollbar-track {
+ background-color:red;
+ -webkit-border-radius: 2em;
+ -moz-border-radius: 2em;
+ border-radius:2em;
+}
+ .tariffCards::-webkit-scrollbar-thumb {
+ background-color:#83eae9;
+ -webkit-border-radius: 2em;
+ -moz-border-radius: 2em;
+ border-radius:2em;
+}

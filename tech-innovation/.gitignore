@@ -1,0 +1,59 @@
+######################
+# Eclipse
+######################
+*.pydevproject
+.project
+.metadata
+/bin/**
+/tmp/**
+/tmp/**/*
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.classpath
+.settings/**
+/logs/**
+
+
+######################
+# Intellij
+######################
+.idea/**
+*.iml
+*.iws
+*.ipr
+*.ids
+*.orig
+
+#####################
+# Maven
+######################
+*/logs/**
+/target/**
+
+######################
+# Package Files
+######################
+*.jar
+*.war
+*.ear
+*.db
+
+######################
+# Maven Wrapper
+######################
+!.mvn/wrapper/maven-wrapper.jar
+
+######################
+# Others
+######################
+*.class
+*.*~
+*~
+.merge_file*
+*/.gitignore
+*/.settings/**
+target
+
